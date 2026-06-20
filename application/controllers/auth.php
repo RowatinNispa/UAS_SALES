@@ -20,10 +20,12 @@ class Auth extends CI_Controller {
     {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
+        $role     = $this->input->post('role');
 
         $user = $this->Auth_model->cek_login(
             $username,
-            $password
+            $password,
+            $role
         );
 
         if($user){
@@ -43,7 +45,7 @@ class Auth extends CI_Controller {
 
             $this->session->set_flashdata(
                 'error',
-                'Username atau Password salah'
+                'Username atau Password salah!'
             );
 
             redirect('auth');

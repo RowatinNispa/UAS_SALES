@@ -1,222 +1,154 @@
-<h1 class="h3 mb-4 text-gray-800">
-    Dashboard
-</h1>
+<div class="container-fluid">
 
-<style>
-    .welcome-card{
-        background: linear-gradient(135deg,#f8f5ff,#efe8ff);
-        border-radius:25px;
-        padding:30px;
-        box-shadow:0 8px 25px rgba(139,109,255,0.15);
-        margin-bottom:30px;
-    }
-
-    .welcome-title{
-        color:#6a5acd;
-        font-weight:bold;
-    }
-
-    .dashboard-card{
-        border:none;
-        border-radius:20px;
-        box-shadow:0 8px 20px rgba(139,109,255,0.12);
-        transition:.3s;
-    }
-
-    .dashboard-card:hover{
-        transform:translateY(-5px);
-    }
-
-    .dashboard-icon{
-        font-size:35px;
-        color:#8B6DFF;
-    }
-
-    .chart-card{
-        border:none;
-        border-radius:20px;
-        box-shadow:0 8px 20px rgba(139,109,255,0.12);
-    }
-
-    .card-number{
-        font-size:28px;
-        font-weight:bold;
-        color:#6a5acd;
-    }
-
-    .card-title{
-        color:#777;
-        font-size:14px;
-    }
-</style>
-
-<!-- WELCOME SECTION -->
-
-<div class="welcome-card">
-    <div class="row align-items-center">
-
-        <div class="col-md-8">
-            <h2 class="welcome-title">
-                Hi, Nis! 👋
-            </h2>
-
-            <p class="text-muted">
-                Selamat datang di Dashboard Sales Management.
-                Semoga harimu produktif yaa ✨
-            </p>
-        </div>
-
-        <div class="col-md-4 text-center">
-            <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
-                 width="150">
-        </div>
-
-    </div>
-</div>
-
-<div class="row">
-
-    <!-- PRODUK -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card dashboard-card">
-            <div class="card-body text-center">
-                <div class="dashboard-icon mb-2">
-                    📦
-                </div>
-
-                <div class="card-title">
-                    Total Produk
-                </div>
-
-                <div class="card-number">
-                    <?= $total_produk; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PELANGGAN -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card dashboard-card">
-            <div class="card-body text-center">
-                <div class="dashboard-icon mb-2">
-                    👥
-                </div>
-
-                <div class="card-title">
-                    Total Pelanggan
-                </div>
-
-                <div class="card-number">
-                    <?= $total_pelanggan; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SALES -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card dashboard-card">
-            <div class="card-body text-center">
-                <div class="dashboard-icon mb-2">
-                    💼
-                </div>
-
-                <div class="card-title">
-                    Total Sales
-                </div>
-
-                <div class="card-number">
-                    <?= $total_sales; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ORDER -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card dashboard-card">
-            <div class="card-body text-center">
-                <div class="dashboard-icon mb-2">
-                    🛒
-                </div>
-
-                <div class="card-title">
-                    Total Order
-                </div>
-
-                <div class="card-number">
-                    <?= $total_order; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- GRAFIK -->
-    <div class="col-xl-12 mb-4">
-        <div class="card chart-card">
-            <div class="card-header bg-white border-0">
-                <h5 style="color:#6a5acd;font-weight:bold;">
-                    Grafik Data Sales Order
-                </h5>
-            </div>
-
-            <div class="card-body">
-                <canvas id="chartDashboard"></canvas>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-const ctx = document.getElementById('chartDashboard');
-
-new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [
-            'Produk',
-            'Pelanggan',
-            'Sales',
-            'Order'
-        ],
-
-        datasets: [{
-            label: 'Total Data',
-            data: [
-                <?= $total_produk; ?>,
-                <?= $total_pelanggan; ?>,
-                <?= $total_sales; ?>,
-                <?= $total_order; ?>
-            ],
-
-            backgroundColor: [
-                '#CDB4FF',
-                '#B8A1FF',
-                '#A78BFA',
-                '#8B6DFF'
-            ],
-
-            borderRadius: 10
-        }]
-    },
-
-    options: {
-        responsive: true,
-        plugins:{
-            legend:{
-                display:false
-            }
-        },
-
-        scales:{
-            y:{
-                beginAtZero:true
-            }
+    <style>
+        body {
+            background: #f5f6ff;
         }
-    }
-});
-</script>
+
+        .dashboard-title {
+            font-weight: 700;
+            color: #312E81;
+            margin-bottom: 25px;
+        }
+
+        .card-stat {
+            border: none;
+            border-radius: 25px;
+            color: white;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+        }
+
+        .card-purple {
+            background: linear-gradient(135deg, #6D28D9, #8B5CF6);
+        }
+
+        .card-indigo {
+            background: linear-gradient(135deg, #4338CA, #6366F1);
+        }
+
+        .card-pink {
+            background: linear-gradient(135deg, #DB2777, #EC4899);
+        }
+
+        .card-blue {
+            background: linear-gradient(135deg, #4F46E5, #818CF8);
+        }
+
+        .card-stat h2 {
+            font-weight: bold;
+        }
+
+        .box {
+            background: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .06);
+        }
+
+        .table thead {
+            background: #F3F0FF;
+        }
+    </style>
+
+    <h2 class="dashboard-title">
+        Dashboard Sales Management
+    </h2>
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card card-stat card-purple">
+                <div class="card-body">
+                    <small>Total Produk</small>
+                    <h2><?= $total_produk; ?></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card card-stat card-indigo">
+                <div class="card-body">
+                    <small>Total Pelanggan</small>
+                    <h2><?= $total_pelanggan; ?></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card card-stat card-pink">
+                <div class="card-body">
+                    <small>Total Sales</small>
+                    <h2><?= $total_sales; ?></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card card-stat card-blue">
+                <div class="card-body">
+                    <small>Total Order</small>
+                    <h2><?= $total_order; ?></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="box">
+                <h5 class="mb-4">
+                    Statistik Data
+                </h5>
+                <canvas id="dashboardChart"></canvas>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="box">
+                <h5 class="mb-4">
+                    Ringkasan
+                </h5>
+
+                <p><b>Produk :</b> <?= $total_produk; ?></p>
+                <p><b>Pelanggan :</b> <?= $total_pelanggan; ?></p>
+                <p><b>Sales :</b> <?= $total_sales; ?></p>
+                <p><b>Order :</b> <?= $total_order; ?></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx =
+            document.getElementById('dashboardChart');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'Produk',
+                    'Pelanggan',
+                    'Sales',
+                    'Order'
+                ],
+
+                datasets: [{
+                    data: [
+                        <?= $total_produk; ?>,
+                        <?= $total_pelanggan; ?>,
+                        <?= $total_sales; ?>,
+                        <?= $total_order; ?>
+                    ],
+
+                    backgroundColor: [
+                        '#8B5CF6',
+                        '#6366F1',
+                        '#EC4899',
+                        '#4F46E5'
+                    ]
+                }]
+            }
+        });
+    </script>
+
+</div>

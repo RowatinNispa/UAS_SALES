@@ -1,29 +1,39 @@
 <div class="container-fluid">
 
-<h3 class="mb-4">Tambah Sales</h3>
+    <div class="card shadow-lg border-0">
 
-<form method="post"
-action="<?= site_url('sales/simpan'); ?>">
+        <div class="card-header bg-primary text-white">
+            <h4>
+                Tambah Sales
+            </h4>
 
-    <div class="form-group">
-        <label>Nama Sales</label>
+        </div>
 
-        <input type="text"
-        name="nama_sales"
-        class="form-control"
-        required>
+        <div class="card-body">
+            <form method="post"
+                action="<?= site_url('sales/simpan'); ?>">
+                <div class="form-group">
+                    <label>Nama Sales</label>
+                    <input
+                        type="text"
+                        name="nama_sales"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-success">
+                    Simpan
+                </button>
+
+                <a href="<?= site_url('sales'); ?>"
+                    class="btn btn-secondary">
+                    Kembali
+                </a>
+            </form>
+        </div>
     </div>
-
-    <button type="submit"
-    class="btn btn-primary">
-        Simpan
-    </button>
-
-    <a href="<?= site_url('sales'); ?>"
-    class="btn btn-secondary">
-        Kembali
-    </a>
-
-</form>
 
 </div>

@@ -16,12 +16,15 @@ class Pelanggan extends CI_Controller {
 
     public function index()
     {
-        $data['pelanggan'] = $this->pelanggan_model->get_all();
-
+        $data['pelanggan'] =
+        $this->pelanggan_model->get_all();
+        $data['total_pelanggan'] =
+        $this->db->count_all('pelanggan');
+        
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
-        $this->load->view('pelanggan/index', $data);
+        $this->load->view('pelanggan/index',$data);
         $this->load->view('templates/footer');
     }
 

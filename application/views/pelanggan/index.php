@@ -1,64 +1,86 @@
-<div id="content-wrapper" class="d-flex flex-column">
-<div id="content">
-
 <div class="container-fluid">
 
-<h3 class="mb-4">Data Pelanggan</h3>
+    <h2 class="mb-4">
+        Data Pelanggan
+    </h2>
 
-<a href="<?= site_url('pelanggan/tambah'); ?>" class="btn btn-primary mb-3">
-    Tambah Pelanggan
-</a>
 
-<table id="tabelPelanggan" class="table table-bordered table-striped">
+    <a href="<?= site_url('pelanggan/tambah'); ?>"
+        class="btn btn-primary mb-3">
+        <i class="fas fa-plus"></i>
+        Tambah Pelanggan
+    </a>
 
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Alamat</th>
-            <th>No_Telp</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
+    <div class="card shadow border-0">
+        <div class="card-body">
 
-    <tbody>
+            <table
+                id="tabelPelanggan"
+                class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>No Telp</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
 
-    <?php $no=1; foreach($pelanggan as $p){ ?>
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($pelanggan as $p):
+                    ?>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td>
+                                <strong>
+                                    <?= $p->nama; ?>
+                                </strong>
+                            </td>
 
-        <tr>
-            <td><?= $no++; ?></td>
-            <td><?= $p->nama; ?></td>
-            <td><?= $p->alamat; ?></td>
-            <td><?= $p->no_telp; ?></td>
+                            <td>
+                                <?= $p->alamat; ?>
+                            </td>
 
-            <td>
+                            <td>
+                                <?= $p->no_telp; ?>
+                            </td>
 
-                <a href="<?= site_url('pelanggan/edit/'.$p->id); ?>"
-                class="btn btn-warning btn-sm">
-                    Edit
-                </a>
+                            <td>
+                                <span
+                                    class="badge badge-success">
+                                    Aktif
+                                </span>
+                            </td>
 
-                <a href="<?= site_url('pelanggan/hapus/'.$p->id); ?>"
-                class="btn btn-danger btn-sm"
-                onclick="return confirm('Yakin hapus data?')">
-                    Hapus
-                </a>
+                            <td>
+                                <a
+                                    href="<?= site_url('pelanggan/edit/' . $p->id); ?>"
+                                    class="btn btn-warning btn-sm">
+                                    Edit
+                                </a>
 
-            </td>
-        </tr>
+                                <a
+                                    href="<?= site_url('pelanggan/hapus/' . $p->id); ?>"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Yakin hapus data?')">
+                                    Hapus
+                                </a>
+                            </td>
+                        </tr>
 
-    <?php } ?>
-
-    </tbody>
-
-</table>
-
-</div>
-</div>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <script>
-$(document).ready(function(){
-    $('#tabelPelanggan').DataTable();
-});
+    $(document).ready(function() {
+        $('#tabelPelanggan').DataTable();
+    });
 </script>

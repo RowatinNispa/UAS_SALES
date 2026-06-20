@@ -1,52 +1,84 @@
 <div class="container-fluid">
 
-<h3 class="mb-4">Data Sales</h3>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-<a href="<?= site_url('sales/tambah'); ?>"
-class="btn btn-primary mb-3">
-    Tambah Sales
-</a>
+    <div>
+        <h2 class="font-weight-bold">
+            👨‍💼 Data Sales
+        </h2>
 
-<table class="table table-bordered">
+        <small class="text-muted">
+            Kelola data sales perusahaan
+        </small>
+    </div>
 
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Nama Sales</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
+    <a href="<?= site_url('sales/tambah'); ?>"
+       class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        Tambah Sales
+    </a>
+</div>
 
-    <tbody>
+<div class="card shadow border-0">
 
-    <?php $no=1; foreach($sales as $s){ ?>
+    <div class="card-body">
+        <table
+        id="tabelSales"
+        class="table table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>ID</th>
+                    <th>Nama Sales</th>
+                    <th>Status</th>
+                    <th width="180">Aksi</th>
+                </tr>
+            </thead>
 
-    <tr>
-        <td><?= $no++; ?></td>
+            <tbody>
+                <?php foreach($sales as $s): ?>
+                <tr>
+                    <td>
+                        <span class="badge badge-secondary">
+                            <?= $s->id_sales; ?>
+                        </span>
+                    </td>
 
-        <td><?= $s->nama_sales; ?></td>
+                    <td>
+                        <?= $s->nama_sales; ?>
+                    </td>
 
-        <td>
+                    <td>
+                        <span class="badge badge-success">
+                            Aktif
+                        </span>
+                    </td>
 
-            <a href="<?= site_url('sales/edit/'.$s->id_sales); ?>"
-            class="btn btn-warning btn-sm">
-                Edit
-            </a>
+                    <td>
+                        <a href="<?= site_url('sales/edit/'.$s->id_sales); ?>"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
 
-            <a href="<?= site_url('sales/hapus/'.$s->id_sales); ?>"
-            class="btn btn-danger btn-sm"
-            onclick="return confirm('Yakin hapus?')">
-                Hapus
-            </a>
+                        <a href="<?= site_url('sales/hapus/'.$s->id_sales); ?>"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Hapus sales?')">
+                            Hapus
+                        </a>
 
-        </td>
-
-    </tr>
-
-    <?php } ?>
-
-    </tbody>
-
-</table>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 
 </div>
+
+</div>
+
+<script>
+$(document).ready(function(){
+    $('#tabelSales').DataTable();
+});
+
+</script>

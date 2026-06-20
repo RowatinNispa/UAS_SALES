@@ -41,6 +41,7 @@ class Produk extends CI_Controller {
             'nama_produk' => $this->input->post('nama_produk'),
             'harga'       => $this->input->post('harga'),
             'stok'        => $this->input->post('stok')
+
         ];
 
         $this->Produk_model->insert($data);

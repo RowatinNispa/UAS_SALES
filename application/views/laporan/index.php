@@ -1,63 +1,157 @@
 <div class="container-fluid">
 
-<h3 class="mb-4">Laporan Sales Order</h3>
+    <style>
+        .card-laporan {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, .15);
+        }
 
-<a
-    href="#"
-    onclick="window.print()"
-    class="btn btn-success mb-3"
->
-    Cetak PDF
-</a>
+        .card-total {
+            background: linear-gradient(135deg,
+                    #8B5CF6,
+                    #A855F7);
+            color: white;
+            border-radius: 20px;
+        }
 
-<table class="table table-bordered">
+        .table-modern {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
 
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Sales</th>
-            <th>Pelanggan</th>
-            <th>Tanggal</th>
-            <th>Total</th>
-            <th>Status</th>
-        </tr>
-    </thead>
+        .badge-draft {
+            background: #ffc107;
+            color: black;
+        }
 
-    <tbody>
+        .badge-selesai {
+            background: #8ca728;
+            color: black;
+        }
 
-    <?php
-    $no = 1;
+        .badge-batal {
+            background: #dc3545;
+        }
+    </style>
 
-    if(!empty($laporan)):
-        foreach($laporan as $l):
-    ?>
+    <h2 class="mb-4">
+        📊 Laporan Sales Order
+    </h2>
 
-        <tr>
-            <td><?= $no++; ?></td>
-            <td><?= $l->nama_sales; ?></td>
-            <td><?= $l->nama; ?></td>
-            <td><?= $l->tanggal; ?></td>
-            <td>
-                Rp <?= number_format($l->total, 0, ',', '.'); ?>
-            </td>
-            <td><?= $l->status; ?></td>
-        </tr>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card card-total">
+                <div class="card-body">
+                    <h6>Total Order</h6>
+                    <h2>
+                        <?= $total_order ?>
+                    </h2>
+                </div>
+            </div>
+        </div>
 
-    <?php
-        endforeach;
-    else:
-    ?>
+        <div class="col-md-6">
+            <div class="card card-total">
+                <div class="card-body">
+                    <h6>Total Pendapatan</h6>
+                    <h2>
+                        <?= number_format(
+                            $pendapatan,
+                            0,
+                            ',',
+                            '.'
+                        ); ?>
+                    </h2>
+                </div>
+            </div>
+        </div>
 
-        <tr>
-            <td colspan="6" class="text-center">
-                Data tidak ditemukan
-            </td>
-        </tr>
+    </div>
 
-    <?php endif; ?>
+    <div class="mb-3">
+        <a
+            href="<?= site_url('laporan/cetak'); ?>"
+            target="_blank"
+            class="btn btn-success">
+            <i class="fas fa-print"></i>
+            Cetak Laporan
+        </a>
+    </div>
 
-    </tbody>
+    <div class="card card-laporan">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Sales</th>
+                            <th>Pelanggan</th>
+                            <th>Tanggal</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
 
-</table>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($laporan as $l):
+                        ?>
+
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $l->nama_sales; ?></td>
+                                <td><?= $l->nama; ?></td>
+                                <td><?= $l->tanggal; ?></td>
+                                <td>
+                                    <?= number_format(
+                                        $l->total,
+                                        0,
+                                        ',',
+                                        '.'
+                                    ); ?>
+
+                                </td>
+
+                                <td>
+
+                                    <?php if ($l->status == 'draft') { ?>
+
+                                        <span class="badge badge-draft">
+                                            Draft
+                                        </span>
+
+                                    <?php } elseif ($l->status == 'selesai') { ?>
+
+                                        <span class="badge badge-selesai">
+                                            Selesai
+                                        </span>
+
+                                    <?php } else { ?>
+
+                                        <span class="badge badge-batal">
+                                            Batal
+                                        </span>
+
+                                    <?php } ?>
+
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>

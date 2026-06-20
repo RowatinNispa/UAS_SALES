@@ -1,78 +1,85 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Cetak Laporan Sales Order</title>
+
+    <title>Cetak Laporan</title>
 
     <style>
-        body{font-family: Arial;}
-        h3{text-align: center;}
+        body {
+            font-family: Arial;
+        }
 
-        table{
-            width:100%;
+        table {
+            width: 100%;
             border-collapse: collapse;
         }
 
-        table, th, td{
+        table,
+        th,
+        td {
             border: 1px solid black;
         }
 
-        th, td{
+        th,
+        td {
             padding: 8px;
+        }
+
+        h2 {
             text-align: center;
         }
-
-        @media print{
-            button {display: none;}
-        }
     </style>
+
 </head>
 
-<body>
+<body onload="window.print()">
 
-    <h3>LAPORAN SALES ORDER</h3>
-
-    <?php if($awal && $akhir): ?>
-        <p>
-            Periode: <?= $awal; ?> s/d <?= $akhir; ?>
-        </p>
-    <?php endif; ?>
+    <h2>
+        LAPORAN SALES ORDER
+    </h2>
 
     <table>
-
         <tr>
             <th>No</th>
-            <th>Tanggal</th>
-            <th>Pelanggan</th>
             <th>Sales</th>
+            <th>Pelanggan</th>
+            <th>Tanggal</th>
             <th>Total</th>
             <th>Status</th>
         </tr>
 
-        <?php $no = 1; foreach($data as $d): ?>
+        <?php
+        $no = 1;
+        foreach ($laporan as $l):
+        ?>
+            <tr>
+                <td><?= $no++; ?></td>
+                <td><?= $l->nama_sales; ?></td>
+                <td><?= $l->nama; ?></td>
+                <td><?= $l->tanggal; ?></td>
+                <td class="text-center">
+                    <?= number_format(
+                        $l->total,
+                        0,
+                        ',',
+                        '.'
+                    ); ?>
+                </td>
 
-        <tr>
-            <td><?= $no++; ?></td>
-            <td><?= $d->tanggal; ?></td>
-            <td><?= $d->nama_pelanggan; ?></td>
-            <td><?= $d->username; ?></td>
-            <td><?= number_format($d->total,0,',','.'); ?></td>
-            <td><?= $d->status; ?></td>
-        </tr>
-
+                <td><?= $l->status; ?></td>
+            </tr>
         <?php endforeach; ?>
-
     </table>
 
     <br><br>
-
-    <p style="text-align:right;">
-        Tangerang, <?= date('d-m-Y'); ?><br><br><br>
-        (Admin)
-    </p>
-
-    <script>
-        window.print();
-    </script>
+    <div align="right">
+        Tangerang,
+        <?= date('d-m-Y'); ?>
+        <br><br><br>
+        Admin
+    </div>
 
 </body>
+
 </html>

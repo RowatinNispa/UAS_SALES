@@ -1,111 +1,113 @@
 <div class="container-fluid">
 
-<h3 class="mb-4">Tambah Sales Order</h3>
+    <h3 class="mb-4">Tambah Sales Order</h3>
 
-<form method="post"
-action="<?= site_url('sales_order/simpan'); ?>">
+    <form method="post"
+        action="<?= site_url('sales_order/simpan'); ?>">
 
-<div class="form-group">
-    <label>Sales</label>
+        <div class="form-group">
+            <label>Sales</label>
+            <select name="id_sales"
+                class="form-control"
+                required>
 
-    <select name="id_sales"
-    class="form-control"
-    required>
+                <option value="">
+                    -- Pilih Sales --
+                </option>
 
-        <option value="">
-            -- Pilih Sales --
-        </option>
+                <?php foreach ($sales as $s) { ?>
+                    <option value="<?= $s->id_sales; ?>">
+                        <?= $s->nama_sales; ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </div>
 
-        <?php foreach($sales as $s){ ?>
+        <div class="form-group">
+            <label>Pelanggan</label>
+            <select name="id_pelanggan"
+                class="form-control"
+                required>
 
-        <option value="<?= $s->id_sales; ?>">
-            <?= $s->nama_sales; ?>
-        </option>
+                <option value="">
+                    -- Pilih Pelanggan --
+                </option>
 
-        <?php } ?>
+                <?php foreach ($pelanggan as $p) { ?>
 
-    </select>
+                    <option value="<?= $p->id; ?>">
+                        <?= $p->nama; ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </div>
 
-</div>
+        <div class="form-group">
+            <label>Produk</label>
+            <select name="id"
+                class="form-control"
+                required>
 
-<div class="form-group">
-    <label>Pelanggan</label>
+                <option value="">
+                    -- Pilih Produk --
+                </option>
 
-    <select name="id_pelanggan"
-    class="form-control"
-    required>
+                <?php foreach ($produk as $p) { ?>
+                    <option value="<?= $p->id; ?>">
+                        <?= $p->nama_produk; ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </div>
 
-        <option value="">
-            -- Pilih Pelanggan --
-        </option>
+        <div class="form-group">
+            <label>Tanggal</label>
 
-        <?php foreach($pelanggan as $p){ ?>
+            <input type="date"
+                name="tanggal"
+                class="form-control"
+                required>
+        </div>
 
-        <option value="<?= $p->id; ?>">
-            <?= $p->nama; ?>
-        </option>
+        <div class="form-group">
+            <label>Total</label>
+            <input type="number"
+                name="total"
+                class="form-control"
+                required>
+        </div>
 
-        <?php } ?>
+        <div class="form-group">
+            <label>Status</label>
+            <select name="status"
+                class="form-control">
 
-    </select>
+                <option value="Draft">
+                    Draft
+                </option>
 
-</div>
+                <option value="Dikirim">
+                    Dikirim
+                </option>
 
-<div class="form-group">
-    <label>Tanggal</label>
+                <option value="Selesai">
+                    Selesai
+                </option>
 
-    <input type="date"
-    name="tanggal"
-    class="form-control"
-    required>
-</div>
+                <option value="Dibatalkan">
+                    Dibatalkan
+                </option>
+            </select>
+        </div>
 
-<div class="form-group">
-    <label>Total</label>
+        <button type="submit"
+            class="btn btn-primary">
+            Simpan
+        </button>
 
-    <input type="number"
-    name="total"
-    class="form-control"
-    required>
-</div>
-
-<div class="form-group">
-
-    <label>Status</label>
-
-    <select name="status"
-    class="form-control">
-
-        <option value="Draft">
-            Draft
-        </option>
-
-        <option value="Dikirim">
-            Dikirim
-        </option>
-
-        <option value="Selesai">
-            Selesai
-        </option>
-
-        <option value="Dibatalkan">
-            Dibatalkan
-        </option>
-
-    </select>
-
-</div>
-
-<button type="submit"
-class="btn btn-primary">
-    Simpan
-</button>
-
-<a href="<?= site_url('sales_order'); ?>"
-class="btn btn-secondary">
-    Kembali
-</a>
-
-</form>
-
+        <a href="<?= site_url('sales_order'); ?>"
+            class="btn btn-secondary">
+            Kembali
+        </a>
+    </form>
 </div>

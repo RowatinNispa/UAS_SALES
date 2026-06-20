@@ -12,21 +12,34 @@
         </span>
         <img class="img-profile rounded-circle" src="<?= base_url('assets/img/undraw_profile_2.svg')?>" width="40">
     </a>
-    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="#">
-            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-            Profile
-        </a>
-        <div class="dropdown-divider"></div>
-        <span class="dropdown-item text-muted small">
-            Last login:
-        </span>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="<?= site_url('auth/logout')?>">
-            <i class="fas fa-sign-out-all fa-sm fa-fw mr-2 text-gray-400"></i>
-            logout
-        </a>
-    </div>
+    <div class="dropdown-menu dropdown-menu-right shadow">
+
+<a class="dropdown-item"
+href="<?= site_url('profile'); ?>">
+
+<i class="fas fa-user"></i>
+Profile
+
+</a>
+
+<div class="dropdown-divider"></div>
+
+<div class="px-3 py-2">
+
+<b>
+<?= $this->session->userdata('username'); ?>
+</b>
+
+<br>
+
+<span class="text-muted">
+Administrator
+</span>
+
+</div>
+
+</div>
+
     </li>
 </ul>
 </nav>

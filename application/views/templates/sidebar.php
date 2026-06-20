@@ -32,7 +32,12 @@
 }
 </style>
 
-<ul class="navbar-nav sidebar sidebar-dark accordion sidebar-lilac">
+<ul class="navbar-nav sidebar sidebar-dark accordion"
+style="background:linear-gradient(180deg,#312E81,#6D28D9);">
+
+<?php 
+    $role = $this->session->userdata('role');
+     ?>
 
 <a class="sidebar-brand d-flex align-items-center justify-content-center"
 href="<?= site_url('dashboard') ?>">
@@ -57,6 +62,8 @@ href="<?= site_url('dashboard') ?>">
 </li>
 
 <hr class="sidebar-divider">
+
+<?php if($role == 'admin'){ ?>
 
 <li class="nav-item">
     <a class="nav-link" href="<?= site_url('pelanggan') ?>">
@@ -95,6 +102,38 @@ href="<?= site_url('dashboard') ?>">
     </a>
 </li>
 
+<?php } ?>
+
+<?php if($role == 'sales') { ?>
+ <li class="nav-item">
+    <a class="nav-link" href="<?= site_url(' sales_order') ?>">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Sales Order</span>
+ </li>
+
+<?php } ?>
+
+<?php if($role == 'mmanager') { ?>
+
+<li class="nav-item">
+    <a class="nav-link" href="<?= site_url('laporan') ?>">
+        <i class="fas fa-file-alt"></i>
+        <span>Laporan</span>
+    </a>
+</li>
+
+<?php } ?>
+
+<li class="nav-item mt-auto">
+    <a class="nav-link text-white"
+       href="<?= site_url('auth/logout'); ?>"
+       onclick="return confirm('Yakin logout?')">
+
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+
+    </a>
+</li>
 </ul>
 
 <div id="content-wrapper" class="d-flex flex-column">

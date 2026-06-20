@@ -7,11 +7,29 @@ class Sales_order_model extends CI_Model {
 
     public function get_all()
     {
-        $this->db->select('sales_order.*, sales.nama_sales, pelanggan.nama');
-        $this->db->from('sales_order');
-        $this->db->join('sales','sales.id_sales=sales_order.id_sales');
-        $this->db->join('pelanggan','pelanggan.id=sales_order.id_pelanggan');
+        $this->db->select('
+            sales_order.*,
+            sales.nama_sales,
+            pelanggan.nama,
+            produk.nama_produk
+        ');
 
+        $this->db->from('sales_order');
+
+        $this->db->join(
+            'sales',
+            'sales.id_sales = sales_order.id_sales'
+        );
+
+        $this->db->join(
+            'pelanggan',
+            'pelanggan.id = sales_order.id_pelanggan'
+        );
+
+        $this->db->join(
+            'produk',
+            'produk.id = sales_order.id'
+        );
         return $this->db->get()->result();
     }
 
