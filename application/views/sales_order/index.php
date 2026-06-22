@@ -28,7 +28,6 @@
 
             <div class="card shadow border-0">
                 <div class="card-body">
-
                     <h6 class="text-muted">
                         Draft
                     </h6>
@@ -36,14 +35,11 @@
                     <h2 class="text-warning">
                         <?= $draft ?>
                     </h2>
-
                 </div>
             </div>
-
         </div>
-
+        
         <div class="col-md-3">
-
             <div class="card shadow border-0">
                 <div class="card-body">
 
@@ -165,7 +161,7 @@
                                 <?php } ?>
                             </td>
 
-                            <td>
+                            <td>    
                                 <a href="<?= site_url('sales_order/edit/' . $o->id_order); ?>"
                                     class="btn btn-warning btn-sm">
                                     Edit

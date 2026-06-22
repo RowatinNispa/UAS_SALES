@@ -39,44 +39,62 @@
     <h2 class="mb-4">
         📊 Laporan Sales Order
     </h2>
+ 
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" action="">
+                <div class="row algin-items-end">
+                    <div class="col-md-5">
+                        <input
+                            type="date"
+                            name="tanggal"
+                            class="form-control"
+                            placeholder="---- -- --">
+                    </div>
 
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <div class="card card-total">
-                <div class="card-body">
-                    <h6>Total Order</h6>
-                    <h2>
-                        <?= $total_order ?>
-                    </h2>
-                </div>
-            </div>
-        </div>
+                    <div class="col-md-2">
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-block">
 
-        <div class="col-md-6">
-            <div class="card card-total">
-                <div class="card-body">
-                    <h6>Total Pendapatan</h6>
-                    <h2>
-                        <?= number_format(
-                            $pendapatan,
-                            0,
-                            ',',
-                            '.'
-                        ); ?>
-                    </h2>
+                            <i class="fas fa-filter"></i>
+                            filter
+                        </button>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a href="<?= site_url('laporan') ?>"
+                        class="btn btn-drak btn-block">
+
+                        <i class="fas fa-sync-alt"></i>
+                        Riset
+                    
+                    </a>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
+    </div>
 
     </div>
 
     <div class="mb-3">
         <a
-            href="<?= site_url('laporan/cetak'); ?>"
+            href="<?= site_url('laporan/cetak?tanggal=' . $this->input->get('tanggal')); ?>"
             target="_blank"
             class="btn btn-success">
+
             <i class="fas fa-print"></i>
             Cetak Laporan
+        </a>
+
+        <a
+            href="<?= site_url('laporan/produk?tanggal=' . $this->input->get('tanggal')); ?>"
+            class="btn btn-info">
+
+            <i class="fas fa-box"></i>
+            Laporan Produk
+        
         </a>
     </div>
 

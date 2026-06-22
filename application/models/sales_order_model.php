@@ -17,19 +17,23 @@ class Sales_order_model extends CI_Model {
         $this->db->from('sales_order');
 
         $this->db->join(
-            'sales',
-            'sales.id_sales = sales_order.id_sales'
+        'sales',
+        'sales.id_sales = sales_order.id_sales',
+        'left'
         );
 
         $this->db->join(
-            'pelanggan',
-            'pelanggan.id = sales_order.id_pelanggan'
+        'pelanggan',
+        'pelanggan.id = sales_order.id_pelanggan',
+        'left'
         );
 
         $this->db->join(
-            'produk',
-            'produk.id = sales_order.id'
+        'produk',
+        'produk.id = sales_order.id',
+        'left'
         );
+
         return $this->db->get()->result();
     }
 

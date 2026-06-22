@@ -22,6 +22,11 @@ class Sales_order extends CI_Controller {
     ->where('status','draft')
     ->count_all_results('sales_order');
 
+    $data['dikirim'] =
+    $this->db
+    ->where('status','dikirim')
+    ->count_all_results('sales_order');
+
     $data['selesai'] =
     $this->db
     ->where('status','selesai')
@@ -29,7 +34,7 @@ class Sales_order extends CI_Controller {
 
     $data['batal'] =
     $this->db
-    ->where('status','batal')
+    ->where('status','dibatalkan')
     ->count_all_results('sales_order');
 
     $this->db->select_sum('total');
@@ -48,7 +53,7 @@ class Sales_order extends CI_Controller {
     {
         $data['sales'] = $this->db->get('sales')->result();
         $data['pelanggan'] = $this->db->get('pelanggan')->result();
-        $data['id'] = $this->db->get('id_produk')->result();
+        $data['produk'] = $this->db->get('produk')->result();
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -62,7 +67,7 @@ class Sales_order extends CI_Controller {
         $data = [
             'id_sales'     => $this->input->post('id_sales'),
             'id_pelanggan' => $this->input->post('id_pelanggan'),
-            'id'           => $this->input->post('id_produk'),
+            'id'           => $this->input->post('id'),
             'tanggal'      => $this->input->post('tanggal'),
             'total'        => $this->input->post('total'),
             'status'       => strtolower($this->input->post('status'))
@@ -77,7 +82,7 @@ class Sales_order extends CI_Controller {
         $data['sales_order'] = $this->Sales_order_model->get_by_id($id);
         $data['sales'] = $this->db->get('sales')->result();
         $data['pelanggan'] = $this->db->get('pelanggan')->result();
-        $data['id'] = $this->db->get('id_produk')->result();
+        $data['produk'] = $this->db->get('produk')->result();
 
 
         $this->load->view('templates/header');
@@ -92,7 +97,7 @@ class Sales_order extends CI_Controller {
         $data = [
             'id_sales'     => $this->input->post('id_sales'),
             'id_pelanggan' => $this->input->post('id_pelanggan'),
-            'id'           => $this->input->post('id_produk'),
+            'id'           => $this->input->post('id'),
             'tanggal'      => $this->input->post('tanggal'),
             'total'        => $this->input->post('total'),
             'status'       => strtolower($this->input->post('status'))
@@ -109,4 +114,6 @@ class Sales_order extends CI_Controller {
 
         redirect('sales_order');
     }
+
+    
 }

@@ -53,4 +53,27 @@ class Detail_order_model extends CI_Model {
             ['id_detail'=>$id]
         );
     }
+
+    public function detail_order($id)
+    {
+        $this->db->select('
+            detail_order.*,
+            produk.nama_produk,
+            produk.harga
+        ');
+
+        $this->db->from('detail_order');
+
+        $this->db->join(
+            'produk',
+            'produk.id = detail_order.id_produk'
+        );
+
+        $this->db->where(
+            'detail_order.id_order',
+            $id
+        );
+
+        return $this->db->get()->result();
+    }
 }

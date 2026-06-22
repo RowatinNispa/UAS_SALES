@@ -22,10 +22,7 @@ class Detail_order extends CI_Controller {
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
-        $this->load->view(
-            'detail_order/index',
-            $data
-        );
+        $this->load->view('detail_order/index',$data);
         $this->load->view('templates/footer');
     }
 
@@ -40,10 +37,7 @@ class Detail_order extends CI_Controller {
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
-        $this->load->view(
-            'detail_order/tambah',
-            $data
-        );
+        $this->load->view('detail_order/tambah',$data);
         $this->load->view('templates/footer');
     }
 
@@ -87,41 +81,30 @@ class Detail_order extends CI_Controller {
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
-        $this->load->view(
-            'detail_order/edit',
-            $data
-        );
+        $this->load->view('detail_order/edit',$data);
         $this->load->view('templates/footer');
     }
 
     public function update($id)
     {
-        $id_produk =
-        $this->input->post('id_produk');
+        $id_produk = $this->input->post('id_produk');
+        $jumlah    = $this->input->post('jumlah');
 
-        $jumlah =
-        $this->input->post('jumlah');
-
-        $produk = $this->db
-        ->get_where(
+        $produk = $this->db->get_where(
             'produk',
-            ['id'=>$id_produk]
+            ['id' => $id_produk]
         )->row();
 
-        $subtotal =
-        $produk->harga * $jumlah;
+        $subtotal = $produk->harga * $jumlah;
 
         $data = [
-            'id_order' => $this->input->post('id_order'),
+            'id_order'  => $this->input->post('id_order'),
             'id_produk' => $id_produk,
-            'jumlah' => $jumlah,
-            'subtotal' => $subtotal
+            'jumlah'    => $jumlah,
+            'subtotal'  => $subtotal
         ];
 
-        $this->Detail_order_model->update(
-            $id,
-            $data
-        );
+        $this->Detail_order_model->update($id, $data);
 
         redirect('detail_order');
     }

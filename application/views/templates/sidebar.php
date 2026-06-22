@@ -93,6 +93,13 @@ href="<?= site_url('dashboard') ?>">
     </a>
 </li>
 
+<li class="nav-item">
+    <a class="nav-link" href="<?= site_url('detail_order') ?>">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Detail Order</span>
+    </a>
+</li>
+
 <hr class="sidebar-divider">
 
 <li class="nav-item">
@@ -106,14 +113,22 @@ href="<?= site_url('dashboard') ?>">
 
 <?php if($role == 'sales') { ?>
  <li class="nav-item">
-    <a class="nav-link" href="<?= site_url(' sales_order') ?>">
+    <a class="nav-link" href="<?= site_url('sales_order') ?>">
         <i class="fas fa-shopping-cart"></i>
         <span>Sales Order</span>
+    </a>
  </li>
+
+ <li class="nav-item">
+    <a class="nav-link" href="<?= site_url('detail_order') ?>">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Detail Order</span>
+    </a>
+</li>
 
 <?php } ?>
 
-<?php if($role == 'mmanager') { ?>
+<?php if($role == 'manager') { ?>
 
 <li class="nav-item">
     <a class="nav-link" href="<?= site_url('laporan') ?>">
